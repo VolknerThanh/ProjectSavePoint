@@ -1,0 +1,30 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+@font-face {
+	font-family: 'SansationLight';
+	src: url('./SansationLight.eot');
+	src: local('SansationLight'), url('./SansationLight.woff') format('woff'), url('./SansationLight.ttf') format('truetype');
+}
+
+.fontsforweb_fontid_423 {
+	font-family: 'SansationLight' !important;
+}
+
+#intro-size{
+	position: absolute;
+	top: 300px;
+	left: 100px;
+	width: 30%;
+	text-align: justify;
+}
+#intro-size p{
+	font-size: 20px;
+	font-family: 'SansationLight' !important;
+}
+#intro-size h1{
+	font-weight: 900;
+	font-size: 40px;
+}
