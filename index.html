@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>Your Shoes || DiscoverYourself</title>
+	<link rel="shortcut icon" href="img/Logo.ico"/>
+	<!-- font -->
+	<link href="https://fonts.googleapis.com/css?family=Abel|Amatic+SC|Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet"/>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"/>
+	<!-- CSS -->
+	<link rel="stylesheet" href="styles/normalize.css"/>
+	<link rel="stylesheet" href="styles/main.css"/>
+	<link rel="stylesheet" href="styles/size.css"/>
+	<link rel="stylesheet" href="styles/images.css"/>
+	<link rel="stylesheet" href="styles/animate.css" />
+	<!-- JQuery -->
+	<script src="lib/jquery-3.2.1.min.js"></script>
+	<script src="lib/script.js"></script>
+	<script src="lib/effects.js" charset="utf-8" async defer></script>
+	<script src="lib/Prevent.js"></script>
+	<style type="text/css">
+		::-webkit-scrollbar { 
+		    display: none;
+		}
+        
+	</style>
+	<script src="lib/wow.min.js"></script>
+	<script>
+		new WOW().init();
+    </script>
+</head>
+<body>
+		<div class="hiddenmenu">
+			<div>
+				<a href="homepage.html" title="Homepage">Homepage</a>
+			</div>
+			<div>
+				<a href="https://www.facebook.com" title="facebook">Facebook</a>
+			</div>
+			<div>
+				<a href="https://www.Instagram.com" title="Instagram">Instagram</a>
+			</div>
+		</div>
+
+
+		<div class="menuIcon" onclick="changeShapeOfThis(this)">
+			<div class="barCircle"></div>
+			<div class="bar1"></div>
+			<div class="bar2"></div>
+			<div class="bar3"></div>
+		</div>
+
+
+		<div class="menubar">
+			<div class="slidemenu"></div>
+			<a href="#show1"><div class="menuDot" onclick="ThisDot(1);" style="top:24%;"></div></a>
+			<a href="#show2"><div class="menuDot" onclick="ThisDot(2);" style="top:32%;"></div></a>
+			<a href="#show3"><div class="menuDot" onclick="ThisDot(3);" style="top:40%;"></div></a>
+			<a href="#show4"><div class="menuDot" onclick="ThisDot(4);" style="top:48%;"></div></a>
+		</div>
+
+
+		<div class="centerize">
+			<div id="show1" class="imageSlideShow">
+				<div class="image">
+					<img src="img/background/Adidas-1.jpg">
+				</div>
+				<div class="image">
+					<img src="img/background/Adidas-2.jpg">
+				</div>
+				<div class="image">
+					<img src="img/background/Neaker-3.jpg">
+				</div>
+				<div class="image">
+					<img src="img/background/Nike-1.jpg">
+				</div>
+
+				<div class="pre" onclick="nextSlide(-1);">&#10094;</div>
+				<div class="next" onclick="nextSlide(1);">&#10095;</div>
+
+				<div class="imageDot-container">
+					<div class="imageDot" onclick="currentSlide(1);"></div>
+					<div class="imageDot" onclick="currentSlide(2);"></div>
+					<div class="imageDot" onclick="currentSlide(3);"></div>
+					<div class="imageDot" onclick="currentSlide(4);"></div>
+				</div>
+			</div>
+			<div class="Index-Title wow bounceInUp">
+				<h1>YOUR SHOES || YOUR CHOICE</h1>
+				<h2>Discover Your Favor</h2>
+			</div>
+		</div>
+		<div id="show2" class="imageCol">
+			<div id="1" class="image1"></div>
+			<div id="2" class="image2"></div>
+			<div id="3" class="image3"></div>
+			<div id="4" class="image4"></div>
+		</div>
+
+		<div id="titleOfGallery" class="wow bounceInLeft">
+			<h2>Tunning New</h2>
+		</div>
+
+		<div id="show3" class="Gallery">
+			<div class="imageGallery imageGallery1">
+				<p data-hover-name="abc"><img src="img/Nike/Nike-7.1.jpg"></p>
+			</div>
+			<div class="imageGallery imageGallery2">
+				<p data-hover-name="abc"><img src="img/Converse/Converse-8.jpg"></p>
+			</div>
+			<div class="imageGallery imageGallery3">
+				<p data-hover-name="abc"><img src="img/Adidas/Adidas-6.1.jpg"></p>
+			</div>
+		</div>
+
+
+		
+		<div id="show4" class="TheWrapper">
+			<div id="imageWrapper1"></div>
+			<div id="imageWrapper2">
+				<div class="aboutTheWrapper">
+					<h4 class="wow bounceInRight">Sản phẩm</h4>
+					<h1 class="wow bounceInRight">Your Shoes</h1>
+					<p class="wow bounceInLeft">Nơi bạn có thể khám phá niềm đam mê của chính mình. YourShoes đem đến các loại giày chất lượng của các hãng nổi tiếng trên thế giới.</p>
+				</div>
+			</div>
+		</div>
+</body>
+</html>
