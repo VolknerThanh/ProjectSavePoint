@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="SaleProducts.aspx.cs" Inherits="SaleProducts" %>
 
 <!DOCTYPE html>
 
@@ -29,8 +29,10 @@
     <script src="lib/script.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
+
     
-    <menu type="context toolbar" class="menu">
+
+     <menu type="context toolbar" class="menu">
         <div>
             <li><a href="homepage.html"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="#"><i class="fa fa-info-circle" style="font-size:24px"></i> About</a></li>
@@ -67,42 +69,34 @@
 
 
     <form id="form1" runat="server">
+         <div style="background-image: url('img/bg.png');min-width :1500px; min-height:1720px;position:absolute;background-attachment: fixed;background-position: center;background-repeat: no-repeat;background-size: cover;opacity:0.85"></div>
+
+        <div class='container'>
+		    <main>
+            
+            <h1 class="ShoesTypeName">Sale&nbsp;&nbsp;Off</h1>
     
         
-
-    <div style="background-image: url('img/bg.png');min-width :1500px; min-height:1720px;position:absolute;background-attachment: fixed;background-position: center;background-repeat: no-repeat;background-size: cover;opacity:0.85">
-    </div>
-
-    <div class='container'>
-		<main>
-
-        <%
-            var title = Request.QueryString["tag"];
-            if (title == "hunter-male" || title == "hunter-female")
-                title = "hunter";
-            %>
-        <h1 class="ShoesTypeName"><%=title%></h1>
-            
-            <asp:ListView ID="ListView1" runat="server" DataSourceID="SqlDataSource1" DataKeyNames="id" GroupItemCount="3">
+            <asp:ListView ID="ListView1" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource1" GroupItemCount="3">
                 <AlternatingItemTemplate>
                     <td runat="server" style="padding:20px;">
-                        <div style=" background-color:white; box-shadow: 2px 2px 10px; margin: 20px 20px 5px;padding: 20px 20px 10px; position:relative;">
+                            <div style=" background-color:white; box-shadow: 2px 2px 10px; margin: 20px 20px 5px;padding: 20px 20px 10px; position:relative;">
                             
-                            <asp:ImageButton ID="ImageButton2" runat="server" CssClass="zoomOut" ImageUrl='<%# Eval("shoesImage", "{0}") %>' PostBackUrl='<%# Eval("id", "payment.aspx?ID={0}") %>'/>
-                            <br />
-                            <asp:Label ID="shoesNameLabel" runat="server" CssClass="labelName" Text='<%# Eval("shoesName", "{0}") %>' />
-                            <br />
-                            <asp:Label ID="shoesPriceLabel" runat="server" CssClass="labelPrice" Text='<%# Eval("shoesPrice", "{0:C}") %>'/>
-                            <br />Type :
-                            <asp:Label ID="shoesTypeLabel" runat="server" Text='<%# Eval("shoesType") %>' />
-                            <br />
-                            <%# (int)Eval("shoesStatus") == 1 ? "<div class='labelStatus'><i class='fa fa-bookmark-o' style='font-size:24px'></i>  NEW</div>" : "" %>
+                                <asp:ImageButton ID="ImageButton2" runat="server" CssClass="zoomOut" ImageUrl='<%# Eval("shoesImage", "{0}") %>' PostBackUrl='<%# Eval("id", "payment.aspx?ID={0}") %>'/>
+                                <br />
+                                <asp:Label ID="shoesNameLabel" runat="server" CssClass="labelName" Text='<%# Eval("shoesName", "{0}") %>' />
+                                <br />
+                                <asp:Label ID="shoesPriceLabel" runat="server" CssClass="labelPrice" Text='<%# Eval("shoesPrice", "{0:C}") %>'/>
+                                <br />Type :
+                                <asp:Label ID="shoesTypeLabel" runat="server" Text='<%# Eval("shoesType") %>' />
+                                <br />
+                                <%# (int)Eval("shoesStatus") == 1 ? "<div class='labelStatus'><i class='fa fa-bookmark-o' style='font-size:24px'></i>  NEW</div>" : "" %>
 
-                            <div style="text-align:center;">
-                                <asp:Button ID="Button1" CssClass="btn btn-1" runat="server" Text="View Detail" PostBackUrl='<%# Eval("id", "ViewDetails.aspx?ID={0}") %>' />
+                                <div style="text-align:center;">
+                                    <asp:Button ID="Button1" CssClass="btn btn-1" runat="server" Text="View Detail" PostBackUrl='<%# Eval("id", "ViewDetails.aspx?ID={0}") %>' />
+                                </div>
                             </div>
-                        </div>
-                    </td>
+                        </td>
                 </AlternatingItemTemplate>
                 <EditItemTemplate>
                     <td runat="server" style="">id:
@@ -161,22 +155,22 @@
                 </InsertItemTemplate>
                 <ItemTemplate>
                     <td runat="server" style="padding:20px;">
-                        <div style=" background-color:white; box-shadow: 2px 2px 10px; margin: 20px 20px 5px;padding: 20px 20px 10px;position:relative;">
-                            <asp:ImageButton ID="ImageButton1" runat="server" CssClass="zoomOut" ImageUrl='<%# Eval("shoesImage", "{0}") %>' PostBackUrl='<%# Eval("id", "payment.aspx?ID={0}") %>' />
-                            <br />
-                            <asp:Label ID="shoesNameLabel" runat="server" CssClass="labelName" Text='<%# Eval("shoesName", "{0}") %>' />
-                            <br />
-                            <asp:Label ID="shoesPriceLabel" runat="server" CssClass="labelPrice" Text='<%# Eval("shoesPrice", "{0:C}") %>'></asp:Label>
-                            <br />Type:
-                            <asp:Label ID="shoesTypeLabel" runat="server" Text='<%# Eval("shoesType") %>' />
-                            <br />
-                            <%# (int)Eval("shoesStatus") == 1 ? "<div class='labelStatus'><i class='fa fa-bookmark-o' style='font-size:24px'></i>  NEW</div>" : "" %>
+                            <div style=" background-color:white; box-shadow: 2px 2px 10px; margin: 20px 20px 5px;padding: 20px 20px 10px;position:relative;">
+                                <asp:ImageButton ID="ImageButton1" runat="server" CssClass="zoomOut" ImageUrl='<%# Eval("shoesImage", "{0}") %>' PostBackUrl='<%# Eval("id", "payment.aspx?ID={0}") %>' />
+                                <br />
+                                <asp:Label ID="shoesNameLabel" runat="server" CssClass="labelName" Text='<%# Eval("shoesName", "{0}") %>' />
+                                <br />
+                                <asp:Label ID="shoesPriceLabel" runat="server" CssClass="labelPrice" Text='<%# Eval("shoesPrice", "{0:C}") %>'></asp:Label>
+                                <br />Type:
+                                <asp:Label ID="shoesTypeLabel" runat="server" Text='<%# Eval("shoesType") %>' />
+                                <br />
+                                <%# (int)Eval("shoesStatus") == 1 ? "<div class='labelStatus'><i class='fa fa-bookmark-o' style='font-size:24px'></i>  NEW</div>" : "" %>
 
-                            <div style="text-align:center;">
-                                <asp:Button ID="Button1" CssClass="btn btn-1" runat="server" Text="View Detail" PostBackUrl='<%# Eval("id", "ViewDetails.aspx?ID={0}") %>' />
+                                <div style="text-align:center;">
+                                    <asp:Button ID="Button1" CssClass="btn btn-1" runat="server" Text="View Detail" PostBackUrl='<%# Eval("id", "ViewDetails.aspx?ID={0}") %>' />
+                                </div>
                             </div>
-                        </div>
-                    </td>
+                        </td>
                 </ItemTemplate>
                 <LayoutTemplate>
                     <table runat="server">
@@ -218,35 +212,19 @@
                         <asp:Label ID="shoesAmountLabel" runat="server" Text='<%# Eval("shoesAmount") %>' />
                         <br /></td>
                 </SelectedItemTemplate>
-        </asp:ListView>
-
-
-            <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT * FROM [ShoesStorage] WHERE ([shoesType] = @shoesType)">
+            </asp:ListView>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [ShoesStorage] WHERE ([shoesPrice] &gt;= @shoesPrice)">
                 <SelectParameters>
-                    <asp:QueryStringParameter Name="shoesType" QueryStringField="tag" Type="String" />
+                    <asp:Parameter DefaultValue="2800000" Name="shoesPrice" Type="Double" />
                 </SelectParameters>
             </asp:SqlDataSource>
-
-            
-            <%
-                if (title == "hunter")
-                {
-                    Response.Write("<div style='text-align:center; padding: 30px;'>");
-                    Response.Write("<a class='btn btn-1' href="+"ViewDetails.aspx?tag=hunter-male"+">For Man</a>");
-                    Response.Write("<a class='btn btn-1' href="+"ViewDetails.aspx?tag=hunter-female"+">For Woman</a>");
-                    Response.Write("</div>");
-                }
-
-             %>
-
-
-        </main>
-    </div>
-
+    
         
-
+            </main>
+        </div>
     </form>
 
+    
      <footer id="footer">
 		
 		<div id="footer-left">
