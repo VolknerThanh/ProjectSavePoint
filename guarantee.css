@@ -1,0 +1,38 @@
+*{
+	margin:0;
+	padding:0;
+}
+#Description{
+	padding-top: 3em;
+	width: 100%;
+	height: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color:  #d0e1e1;
+    min-height: 800px;
+}
+#picture{
+	width: 50%;
+	height: 600px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#picture img{
+	border-radius: 10%;
+}
+#text{
+	font-size: 1.75em;
+	color: #507c7c;
+	font-family: 'Pacifico', cursive;
+	padding-left: 0.9em;
+}
+#text h2{
+	font-family: 'Pacifico', cursive;
+	padding-bottom: 0.3em;
+	font-size: 3em;
+}
+#text p{
+	line-height: 1.75em;
+}
