@@ -1,35 +1,31 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="All.aspx.cs" Inherits="All" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta http-equiv="Pragma" content="no-cache"/>
-    <meta http-equiv="no-cache"/>
-    <meta http-equiv="Expires" content="-1"/>
-    <meta http-equiv="Cache-Control" content="no-cache"/>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Your Shoes || DiscoverYourself</title>
-    <link rel="shortcut icon" href="img/Logo.ico"/>
+    <link rel="shortcut icon" href="img/Logo.ico">
     <!-- font -->
-    <link href="https://fonts.googleapis.com/css?family=Abel|Amatic+SC|Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Abel|Amatic+SC|Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
     <!-- CSS -->
-    <link rel="stylesheet" href="styles/normalize.css"/>
-    <link rel="stylesheet" href="styles/main.css"/>
-    <link rel="stylesheet" href="styles/size.css"/>
-    <link rel="stylesheet" href="styles/images.css"/>
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/size.css">
+    <link rel="stylesheet" href="styles/images.css">
 
     <!-- JQuery -->
     <script src="lib/jquery-3.2.1.min.js"></script>
     <script src="lib/script.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
-    
+    <form id="form1" runat="server">
     <menu type="context toolbar" class="menu">
         <div>
             <li><a href="homepage.html"><i class="fa fa-home"></i> Home</a></li>
@@ -43,7 +39,7 @@
                 </ul>
             </li>
             <li>
-               <a href="#"><i class="fa fa-venus" style="font-size:24px"></i> Women</a>
+                <a href="#"><i class="fa fa-venus" style="font-size:24px"></i> Women</a>
                 <ul class="submenu">
                     <li><a href="Default.aspx?tag=nike">Nike</a></li>
                     <li><a href="Default.aspx?tag=converse">Converse</a></li>
@@ -65,25 +61,28 @@
         </div>
     </menu>
 
-
-    <form id="form1" runat="server">
     
+    
+
+    <div class="container">
         
-
-    <div style="background-image: url('img/bg.png');min-width :1500px; min-height:1720px;position:absolute;background-attachment: fixed;background-position: center;background-repeat: no-repeat;background-size: cover;opacity:0.85">
-    </div>
-
-    <div class='container'>
-		<main id="filter">
-
-        <%
-            var title = Request.QueryString["tag"];
-            if (title == "hunter-male" || title == "hunter-female")
-                title = "hunter";
-            %>
-        <h1 class="ShoesTypeName"><%=title%></h1>
+        <main>
+            <h1 class="intro-title">All products :</h1>
+            <div class="filter">
+                <asp:RadioButtonList OnSelectedIndexChanged="rdbtn_price_SelectedIndexChanged" ID="rdbtn_price" runat="server">
+                    <asp:ListItem Text ="&nbsp;&nbsp&nbsp;&nbsp; price < 500,000 $" Value="500000" />
+                    <asp:ListItem Text ="&nbsp;&nbsp&nbsp;&nbsp; 500,000$ <= price < 1,000,000$" Value="1000000" />
+                    <asp:ListItem Text ="&nbsp;&nbsp&nbsp;&nbsp; 1,000,000$ <= price < 2,000,000$" Value="2000000" />
+                    <asp:ListItem Text ="&nbsp;&nbsp&nbsp;&nbsp; 2,000,000$ <= price < 3,000,000$" Value="3000000" />
+                    <asp:ListItem Text ="&nbsp;&nbsp&nbsp;&nbsp; price >= 3,000,000$" Value="10000000"/>
+                </asp:RadioButtonList>
+                <asp:Button ID="btnFilter" CssClass="btn btn-2" runat="server" Text="Filter" OnClick="btnFilter_Click"/>
+                <asp:Label ID="this_price" runat="server" Visible ="false">
             
-            <asp:ListView ID="ListView1" runat="server" DataSourceID="SqlDataSource1" DataKeyNames="id" GroupItemCount="3">
+                </asp:Label>
+            </div>
+
+            <asp:ListView ID="lv_prod" runat="server" GroupItemCount="3" DataSourceID="SqlDataSource1" DataKeyNames="id">
                 <AlternatingItemTemplate>
                     <td runat="server" style="padding:20px;">
                         <div style=" background-color:white; box-shadow: 2px 2px 10px; margin: 20px 20px 5px;padding: 20px 20px 10px; position:relative;">
@@ -104,36 +103,43 @@
                         </div>
                     </td>
                 </AlternatingItemTemplate>
-                <EditItemTemplate>
-                    <td runat="server" style="">id:
-                        <asp:Label ID="idLabel1" runat="server" Text='<%# Eval("id") %>' />
-                        <br />shoesName:
-                        <asp:TextBox ID="shoesNameTextBox" runat="server" Text='<%# Bind("shoesName") %>' />
-                        <br />shoesPrice:
-                        <asp:TextBox ID="shoesPriceTextBox" runat="server" Text='<%# Bind("shoesPrice") %>' />
-                        <br />shoesImage:
-                        <asp:TextBox ID="shoesImageTextBox" runat="server" Text='<%# Bind("shoesImage") %>' />
-                        <br />shoesType:
-                        <asp:TextBox ID="shoesTypeTextBox" runat="server" Text='<%# Bind("shoesType") %>' />
-                        <br />shoesStatus:
-                        <asp:TextBox ID="shoesStatusTextBox" runat="server" Text='<%# Bind("shoesStatus") %>' />
-                        <br />shoesAmount:
-                        <asp:TextBox ID="shoesAmountTextBox" runat="server" Text='<%# Bind("shoesAmount") %>' />
-                        <br />
-                        <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="Update" />
-                        <br />
-                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" />
-                        <br /></td>
+                    <EditItemTemplate>
+                        <td runat="server" style="">id:
+                            <asp:Label ID="idLabel1" runat="server" Text='<%# Eval("id") %>' />
+                            <br />
+                            shoesName:
+                            <asp:TextBox ID="shoesNameTextBox" runat="server" Text='<%# Bind("shoesName") %>' />
+                            <br />
+                            shoesPrice:
+                            <asp:TextBox ID="shoesPriceTextBox" runat="server" Text='<%# Bind("shoesPrice") %>' />
+                            <br />
+                            shoesImage:
+                            <asp:TextBox ID="shoesImageTextBox" runat="server" Text='<%# Bind("shoesImage") %>' />
+                            <br />
+                            shoesType:
+                            <asp:TextBox ID="shoesTypeTextBox" runat="server" Text='<%# Bind("shoesType") %>' />
+                            <br />
+                            shoesStatus:
+                            <asp:TextBox ID="shoesStatusTextBox" runat="server" Text='<%# Bind("shoesStatus") %>' />
+                            <br />
+                            shoesAmount:
+                            <asp:TextBox ID="shoesAmountTextBox" runat="server" Text='<%# Bind("shoesAmount") %>' />
+                            <br />
+                            <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="Update" />
+                            <br />
+                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" />
+                            <br />
+                        </td>
                 </EditItemTemplate>
                 <EmptyDataTemplate>
                     <table runat="server" style="">
                         <tr>
-                            <td>No data was returned.</td>
+                            <td>Please choose the button above to filter data !</td>
                         </tr>
                     </table>
                 </EmptyDataTemplate>
                 <EmptyItemTemplate>
-<td runat="server" />
+                    <td runat="server" />
                 </EmptyItemTemplate>
                 <GroupTemplate>
                     <tr id="itemPlaceholderContainer" runat="server">
@@ -143,23 +149,29 @@
                 <InsertItemTemplate>
                     <td runat="server" style="">shoesName:
                         <asp:TextBox ID="shoesNameTextBox" runat="server" Text='<%# Bind("shoesName") %>' />
-                        <br />shoesPrice:
+                        <br />
+                        shoesPrice:
                         <asp:TextBox ID="shoesPriceTextBox" runat="server" Text='<%# Bind("shoesPrice") %>' />
-                        <br />shoesImage:
+                        <br />
+                        shoesImage:
                         <asp:TextBox ID="shoesImageTextBox" runat="server" Text='<%# Bind("shoesImage") %>' />
-                        <br />shoesType:
+                        <br />
+                        shoesType:
                         <asp:TextBox ID="shoesTypeTextBox" runat="server" Text='<%# Bind("shoesType") %>' />
-                        <br />shoesStatus:
+                        <br />
+                        shoesStatus:
                         <asp:TextBox ID="shoesStatusTextBox" runat="server" Text='<%# Bind("shoesStatus") %>' />
-                        <br />shoesAmount:
+                        <br />
+                        shoesAmount:
                         <asp:TextBox ID="shoesAmountTextBox" runat="server" Text='<%# Bind("shoesAmount") %>' />
                         <br />
                         <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="Insert" />
                         <br />
                         <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Clear" />
-                        <br /></td>
+                        <br />
+                    </td>
                 </InsertItemTemplate>
-                <ItemTemplate>
+                    <ItemTemplate>
                     <td runat="server" style="padding:20px;">
                         <div style=" background-color:white; box-shadow: 2px 2px 10px; margin: 20px 20px 5px;padding: 20px 20px 10px;position:relative;">
                             <asp:ImageButton ID="ImageButton1" runat="server" CssClass="zoomOut" ImageUrl='<%# Eval("shoesImage", "{0}") %>' PostBackUrl='<%# Eval("id", "payment.aspx?ID={0}") %>' />
@@ -204,78 +216,71 @@
                 <SelectedItemTemplate>
                     <td runat="server" style="">id:
                         <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
-                        <br />shoesName:
+                        <br />
+                        shoesName:
                         <asp:Label ID="shoesNameLabel" runat="server" Text='<%# Eval("shoesName") %>' />
-                        <br />shoesPrice:
+                        <br />
+                        shoesPrice:
                         <asp:Label ID="shoesPriceLabel" runat="server" Text='<%# Eval("shoesPrice") %>' />
-                        <br />shoesImage:
+                        <br />
+                        shoesImage:
                         <asp:Label ID="shoesImageLabel" runat="server" Text='<%# Eval("shoesImage") %>' />
-                        <br />shoesType:
+                        <br />
+                        shoesType:
                         <asp:Label ID="shoesTypeLabel" runat="server" Text='<%# Eval("shoesType") %>' />
-                        <br />shoesStatus:
+                        <br />
+                        shoesStatus:
                         <asp:Label ID="shoesStatusLabel" runat="server" Text='<%# Eval("shoesStatus") %>' />
-                        <br />shoesAmount:
+                        <br />
+                        shoesAmount:
                         <asp:Label ID="shoesAmountLabel" runat="server" Text='<%# Eval("shoesAmount") %>' />
-                        <br /></td>
+                        <br />
+                    </td>
                 </SelectedItemTemplate>
-        </asp:ListView>
-
-
-            <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT * FROM [ShoesStorage] WHERE ([shoesType] = @shoesType)">
+            </asp:ListView>
+            <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT * FROM [ShoesStorage] WHERE (([shoesPrice] &lt; @shoesPrice) AND ([shoesPrice] &gt;= @shoesPrice2)) ORDER BY [shoesPrice]" >
                 <SelectParameters>
-                    <asp:QueryStringParameter Name="shoesType" QueryStringField="tag" Type="String" />
+                    <asp:ControlParameter ControlID="rdbtn_price" DefaultValue="10000000" Name="shoesPrice" PropertyName="SelectedValue" Type="Double" />
+                    <asp:ControlParameter ControlID="this_price" DefaultValue="0" Name="shoesPrice2" PropertyName="Text" Type="Double" />
                 </SelectParameters>
+                
             </asp:SqlDataSource>
-
             
-            <%
-                if (title == "hunter")
-                {
-                    Response.Write("<div style='text-align:center; padding: 30px;'>");
-                    Response.Write("<a class='btn btn-1' href="+"ViewDetails.aspx?tag=hunter-male"+">For Man</a>");
-                    Response.Write("<a class='btn btn-1' href="+"ViewDetails.aspx?tag=hunter-female"+">For Woman</a>");
-                    Response.Write("</div>");
-                }
-
-             %>
-
-
+            
         </main>
     </div>
+    
+    <footer id="footer">
 
-        
+        <div id="footer-left">
+            <img src="img/Logo.jpg" style="width: 70%;" alt="logo">
+        </div>
+        <div id="footer-center-left">
+            <h3 style="color: #23474c;"><span class="fa fa-info-circle"></span> Helpful information:</h3>
+            <a href="size.html">Check foot size</a><br>
+            <a href="guarantee.html">Check guarantee</a><br>
+            <a href="#">Exchange Rules</a><br>
+            <a href="#">Ohter shops</a>
+        </div>
+        <div id="footer-center-right">
+            <h3 style="color: #23474c;"><span class="fa fa-phone-square"></span> Contact</h3>
+            <span>0120 890 4612</span><br>
+            <span>0120 756 4769</span><br>
+        </div>
+        <div id="footer-right">
+            <h2 style="font-weight: 600;">Follow us</h2>
+            <br>
+            <a href="https://www.facebook.com/GoldenSunny.vn/" target="_blank"><span style="font-size:25px; padding-right: 10px;" class="fa fa-facebook-square"></span></a>
+            <a href="https://twitter.com/Volkner7" target="_blank"><span style="font-size:25px; padding-right: 10px;" class="fa fa-twitter-square"></span></a>
+            <a href="https://www.instagram.com/rainsilver_/" target="_blank"><span style="font-size:25px; padding-right: 10px;" class="fa fa-instagram"></span></a>
+            <a href="https://www.youtube.com/channel/UCrp73TyEUkP7BUQsbcTkorw" target="_blank"><span style="font-size:25px; padding-right: 10px;" class="fa fa-youtube-square"></span></a>
+        </div>
+
+        <p id="footer-bottom">&copy; copyright 2017 YourShoes. All Rights Reserved</p>
+    </footer>
+    
 
     </form>
-
-     <footer id="footer">
-		
-		<div id="footer-left">
-			<img src="img/Logo.jpg" style="width: 70%;" alt="logo">
-		</div>
-		<div id="footer-center-left">
-			<h3 style="color: #23474c;"><span class="fa fa-info-circle"></span> Helpful information:</h3>
-			<a href="size.html">Check foot size</a><br>
-			<a href="guarantee.html">Check guarantee</a><br>
-			<a href="#">Exchange Rules</a><br>
-			<a href="#">Ohter shops</a>
-		</div>
-		<div id="footer-center-right">
-			<h3 style="color: #23474c;"><span class="fa fa-phone-square"></span> Contact</h3>
-			<span>0120 890 4612</span><br>
-			<span>0120 756 4769</span><br>
-		</div>
-		<div id="footer-right">
-			<h2 style="font-weight: 600;">Follow us</h2>
-			<br>
-			<a href="https://www.facebook.com/GoldenSunny.vn/" target="_blank"><span style="font-size:25px; padding-right: 10px;" class="fa fa-facebook-square"></span></a>
-			<a href="https://twitter.com/Volkner7" target="_blank"><span style="font-size:25px; padding-right: 10px;" class="fa fa-twitter-square"></span></a>
-			<a href="https://www.instagram.com/rainsilver_/" target="_blank"><span style="font-size:25px; padding-right: 10px;" class="fa fa-instagram"></span></a>
-			<a href="https://www.youtube.com/channel/UCrp73TyEUkP7BUQsbcTkorw" target="_blank"><span style="font-size:25px; padding-right: 10px;" class="fa fa-youtube-square"></span></a>
-		</div>
-
-		<p id="footer-bottom">&copy; copyright 2017 YourShoes. All Rights Reserved</p>
-	</footer>
-
 
 </body>
 </html>
